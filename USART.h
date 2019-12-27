@@ -4,10 +4,12 @@
 
 #include	"config.h"
 
-#define	COM_TX1_Lenth	128
-#define	COM_RX1_Lenth	128
-#define	COM_TX2_Lenth	128
-#define	COM_RX2_Lenth	128
+#define UART_BUFFER_LEN 32
+
+#define	COM_TX1_Lenth	UART_BUFFER_LEN
+#define	COM_RX1_Lenth	UART_BUFFER_LEN
+#define	COM_TX2_Lenth	UART_BUFFER_LEN
+#define	COM_RX2_Lenth	UART_BUFFER_LEN
 
 #define	USART1	1
 #define	USART2	2
