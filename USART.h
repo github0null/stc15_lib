@@ -3,7 +3,7 @@
 
 #include "config.h"
 
-#define UART_BUFFER_LEN 32
+#define UART_BUFFER_LEN 128
 
 #define COM_TX1_Lenth UART_BUFFER_LEN
 #define COM_RX1_Lenth UART_BUFFER_LEN
@@ -57,12 +57,6 @@ typedef struct
 	u8 UART_RXD_TXD_Short; //内部短路RXD与TXD, 做中继, ENABLE,DISABLE
 
 } COMx_InitDefine;
-
-#ifdef USE_USART1
-#endif
-
-#ifdef USE_USART2
-#endif
 
 u8 USART_Configuration(u8 UARTx, COMx_InitDefine *COMx);
 
