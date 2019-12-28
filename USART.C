@@ -56,6 +56,8 @@ u8 USART_Configuration(u8 UARTx, COMx_InitDefine *COMx)
 	u8 i;
 	u32 j;
 
+#ifdef USE_USART1
+
 	if (UARTx == USART1)
 	{
 		COM1.id = 1;
@@ -142,6 +144,10 @@ u8 USART_Configuration(u8 UARTx, COMx_InitDefine *COMx)
 		return 0;
 	}
 
+#endif
+
+#ifdef USE_USART2
+
 	if (UARTx == USART2)
 	{
 		COM2.id = 2;
@@ -190,6 +196,8 @@ u8 USART_Configuration(u8 UARTx, COMx_InitDefine *COMx)
 			S2CON &= ~(1 << 4);							 //禁止接收
 		P_SW2 = (P_SW2 & ~1) | (COMx->UART_P_SW & 0x01); //切换IO
 	}
+
+#endif
 
 	return 2;
 }
