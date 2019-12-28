@@ -209,7 +209,7 @@ void PrintString(COMx_Define *COMx, u8 *puts)
 }
 */
 
-/********************* UART1中断函数************************/
+/********************* UART1中断函数***********************
 void UART1_int(void) interrupt UART1_VECTOR
 {
 	if (RI)
@@ -236,9 +236,9 @@ void UART1_int(void) interrupt UART1_VECTOR
 		else
 			COM1.B_TX_busy = 0;
 	}
-}
+}*/
 
-/********************* UART2中断函数************************/
+/********************* UART2中断函数***********************
 void UART2_int(void) interrupt UART2_VECTOR
 {
 	if (RI2)
@@ -265,4 +265,4 @@ void UART2_int(void) interrupt UART2_VECTOR
 		else
 			COM2.B_TX_busy = 0;
 	}
-}
+}*/
