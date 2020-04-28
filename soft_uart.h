@@ -7,16 +7,11 @@
 void TxSend(u8 dat);
 void PrintString(unsigned char code *puts);
 
-#ifdef _DEBUG_
-
-#define LOG(str)      \
-    PrintString(str); \
-    PrintString("\r\n")
-
+#ifdef DEBUG
+#include <STDIO.H>
+void log(const char *str, ...);
 #else
-
-#define LOG(str) ;
-
+#define log(x)
 #endif
 
 #endif

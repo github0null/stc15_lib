@@ -9,9 +9,9 @@
 
 ******************************************/
 
-#include	"soft_uart.h"
+#include "soft_uart.h"
 
-sbit	P_TXD = P3^1;	//定义模拟串口发送端,可以是任意IO
+sbit P_TXD = P3 ^ 1; //定义模拟串口发送端,可以是任意IO
 
 //========================================================================
 // 函数: void	BitTime(void)
@@ -20,13 +20,14 @@ sbit	P_TXD = P3^1;	//定义模拟串口发送端,可以是任意IO
 // 返回: none.
 // 版本: VER1.0
 // 日期: 2013-4-1
-// 备注: 
+// 备注:
 //========================================================================
-void	BitTime(void)
+void BitTime(void)
 {
-	u16 i;
-	i = ((MAIN_Fosc / 100) * 104) / 130000L - 1;		//根据主时钟来计算位时间
-	while(--i);
+    u16 i;
+    i = ((MAIN_Fosc / 100) * 104) / 130000L - 1; //根据主时钟来计算位时间
+    while (--i)
+        ;
 }
 
 //========================================================================
@@ -36,25 +37,27 @@ void	BitTime(void)
 // 返回: none.
 // 版本: VER1.0
 // 日期: 2013-4-1
-// 备注: 
+// 备注:
 //========================================================================
-void	TxSend(u8 dat)
+void TxSend(u8 dat)
 {
-	u8	i;
-	EA = 0;
-	P_TXD = 0;
-	BitTime();
-	for(i=0; i<8; i++)
-	{
-		if(dat & 1)		P_TXD = 1;
-		else			P_TXD = 0;
-		dat >>= 1;
-		BitTime();
-	}
-	P_TXD = 1;
-	EA = 1;
-	BitTime();
-	BitTime();
+    u8 i;
+    EA = 0;
+    P_TXD = 0;
+    BitTime();
+    for (i = 0; i < 8; i++)
+    {
+        if (dat & 1)
+            P_TXD = 1;
+        else
+            P_TXD = 0;
+        dat >>= 1;
+        BitTime();
+    }
+    P_TXD = 1;
+    EA = 1;
+    BitTime();
+    BitTime();
 }
 
 //========================================================================
@@ -64,10 +67,28 @@ void	TxSend(u8 dat)
 // 返回: none.
 // 版本: VER1.0
 // 日期: 2013-4-1
-// 备注: 
+// 备注:
 //========================================================================
 void PrintString(unsigned char code *puts)
 {
-    for (; *puts != 0;	puts++)  TxSend(*puts);
+    for (; *puts != 0; puts++)
+        TxSend(*puts);
 }
 
+#ifdef DEBUG
+#include <STDARG.H>
+
+void log(const char *format, ...)
+{
+    va_list vList;
+    va_start(vList, format);
+    vprintf(format, vList);
+    va_end(vList);
+}
+
+char putchar(char c)
+{
+    TxSend((u8)c);
+    return c;
+}
+#endif
