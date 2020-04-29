@@ -31,19 +31,19 @@ STC15F/L2K61S2   无EPROM, 整个122扇区的FLASH都可以擦写 地址 0x0000~
       #define   MOVC_ShiftAddress    0x2000
 #elif (MCU_Type == STC15F_L2K16S2)
       #define   MOVC_ShiftAddress    0x4000
-#elif (MCU_Type == STC15F_L2K24S2
+#elif (MCU_Type == STC15F_L2K24S2)
       #define   MOVC_ShiftAddress    0x6000
-#elif (MCU_Type == STC15F_L2K32S2
+#elif (MCU_Type == STC15F_L2K32S2)
       #define   MOVC_ShiftAddress    0x8000
-#elif (MCU_Type == STC15F_L2K40S2
+#elif (MCU_Type == STC15F_L2K40S2)
       #define   MOVC_ShiftAddress    0xA000
-#elif (MCU_Type == STC15F_L2K48S2
+#elif (MCU_Type == STC15F_L2K48S2)
       #define   MOVC_ShiftAddress    0xC000
-#elif (MCU_Type == STC15F_L2K56S2
+#elif (MCU_Type == STC15F_L2K56S2)
       #define   MOVC_ShiftAddress    0xE000
-#elif (MCU_Type == STC15F_L2K60S2
+#elif (MCU_Type == STC15F_L2K60S2)
       #define   MOVC_ShiftAddress    0xF000
-#elif (MCU_Type == IAP15F_L2K61S2
+#elif (MCU_Type == IAP15F_L2K61S2)
       #define   MOVC_ShiftAddress    0x0000
 #endif
 
