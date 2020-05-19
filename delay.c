@@ -57,7 +57,7 @@ void DelayInit()
 	timerDef.TIM_Run = DISABLE;
 	timerDef.TIM_Value = 0x00;
 
-	_unit = Main_Fosc_KHZ / 1000U;
+	_unit = MainFosc_KHZ / 1000U;
 
 	Timer_Inilize(0, &timerDef);
 }
