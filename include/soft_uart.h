@@ -11,7 +11,7 @@ void PrintString(unsigned char code *puts);
 #include <STDIO.H>
 void LOG(const char *str, ...);
 #else
-#define log(x)
+#define LOG(x)
 #endif
 
 #endif
