@@ -78,7 +78,7 @@ void PrintString(unsigned char code *puts)
 #ifdef DEBUG
 #include <STDARG.H>
 
-void log(const char *format, ...)
+void LOG(const char *format, ...)
 {
     va_list vList;
     va_start(vList, format);

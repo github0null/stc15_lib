@@ -9,7 +9,7 @@ void PrintString(unsigned char code *puts);
 
 #ifdef DEBUG
 #include <STDIO.H>
-void log(const char *str, ...);
+void LOG(const char *str, ...);
 #else
 #define log(x)
 #endif
