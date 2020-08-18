@@ -1,7 +1,7 @@
 
-/*************	åŠŸèƒ½è¯´æ˜	**************
+/*************	¹¦ÄÜËµÃ÷	**************
 
-æœ¬æ–‡ä»¶ä¸ºSTC15xxxç³»åˆ—çš„å®šæ—¶å™¨åˆå§‹åŒ–å’Œä¸­æ–­ç¨‹åº,ç”¨æˆ·å¯ä»¥åœ¨è¿™ä¸ªæ–‡ä»¶ä¸­ä¿®æ”¹è‡ªå·±éœ€è¦çš„ä¸­æ–­ç¨‹åº.
+±¾ÎÄ¼şÎªSTC15xxxÏµÁĞµÄ¶¨Ê±Æ÷³õÊ¼»¯ºÍÖĞ¶Ï³ÌĞò,ÓÃ»§¿ÉÒÔÔÚÕâ¸öÎÄ¼şÖĞĞŞ¸Ä×Ô¼ºĞèÒªµÄÖĞ¶Ï³ÌĞò.
 
 
 ******************************************/
@@ -11,77 +11,77 @@
 #include	"timer.h"
 
 //========================================================================
-// å‡½æ•°: u8	Timer_Inilize(u8 TIM, TIM_InitTypeDef *TIMx)
-// æè¿°: å®šæ—¶å™¨åˆå§‹åŒ–ç¨‹åº.
-// å‚æ•°: TIMx: ç»“æ„å‚æ•°,è¯·å‚è€ƒtimer.hé‡Œçš„å®šä¹‰.
-// è¿”å›: æˆåŠŸè¿”å›0, ç©ºæ“ä½œè¿”å›1,é”™è¯¯è¿”å›2.
-// ç‰ˆæœ¬: V1.0, 2012-10-22
+// º¯Êı: u8	Timer_Inilize(u8 TIM, TIM_InitTypeDef *TIMx)
+// ÃèÊö: ¶¨Ê±Æ÷³õÊ¼»¯³ÌĞò.
+// ²ÎÊı: TIMx: ½á¹¹²ÎÊı,Çë²Î¿¼timer.hÀïµÄ¶¨Òå.
+// ·µ»Ø: ³É¹¦·µ»Ø0, ¿Õ²Ù×÷·µ»Ø1,´íÎó·µ»Ø2.
+// °æ±¾: V1.0, 2012-10-22
 //========================================================================
 u8	Timer_Inilize(u8 TIM, TIM_InitTypeDef *TIMx)
 {
-	if(TIM > Timer2)	return 1;	//ç©ºæ“ä½œ
+	if(TIM > Timer2)	return 1;	//¿Õ²Ù×÷
 
 	if(TIM == Timer0)
 	{
-		TR0 = 0;		//åœæ­¢è®¡æ•°
-		if(TIMx->TIM_Interrupt == ENABLE)		ET0 = 1;	//å…è®¸ä¸­æ–­
-		else									ET0 = 0;	//ç¦æ­¢ä¸­æ–­
-		if(TIMx->TIM_Polity == PolityHigh)		PT0 = 1;	//é«˜ä¼˜å…ˆçº§ä¸­æ–­
-		else									PT0 = 0;	//ä½ä¼˜å…ˆçº§ä¸­æ–­
-		if(TIMx->TIM_Mode >  TIM_16BitAutoReloadNoMask)	return 2;	//é”™è¯¯
-		TMOD = (TMOD & ~0x03) | TIMx->TIM_Mode;	//å·¥ä½œæ¨¡å¼,0: 16ä½è‡ªåŠ¨é‡è£…, 1: 16ä½å®šæ—¶/è®¡æ•°, 2: 8ä½è‡ªåŠ¨é‡è£…, 3: 16ä½è‡ªåŠ¨é‡è£…, ä¸å¯å±è”½ä¸­æ–­
+		TR0 = 0;		//Í£Ö¹¼ÆÊı
+		if(TIMx->TIM_Interrupt == ENABLE)		ET0 = 1;	//ÔÊĞíÖĞ¶Ï
+		else									ET0 = 0;	//½ûÖ¹ÖĞ¶Ï
+		if(TIMx->TIM_Polity == PolityHigh)		PT0 = 1;	//¸ßÓÅÏÈ¼¶ÖĞ¶Ï
+		else									PT0 = 0;	//µÍÓÅÏÈ¼¶ÖĞ¶Ï
+		if(TIMx->TIM_Mode >  TIM_16BitAutoReloadNoMask)	return 2;	//´íÎó
+		TMOD = (TMOD & ~0x03) | TIMx->TIM_Mode;	//¹¤×÷Ä£Ê½,0: 16Î»×Ô¶¯ÖØ×°, 1: 16Î»¶¨Ê±/¼ÆÊı, 2: 8Î»×Ô¶¯ÖØ×°, 3: 16Î»×Ô¶¯ÖØ×°, ²»¿ÉÆÁ±ÎÖĞ¶Ï
 		if(TIMx->TIM_ClkSource == TIM_CLOCK_12T)	AUXR &= ~0x80;	//12T
 		if(TIMx->TIM_ClkSource == TIM_CLOCK_1T)		AUXR |=  0x80;	//1T
-		if(TIMx->TIM_ClkSource == TIM_CLOCK_Ext)	TMOD |=  0x04;	//å¯¹å¤–è®¡æ•°æˆ–åˆ†é¢‘
-		else										TMOD &= ~0x04;	//å®šæ—¶
-		if(TIMx->TIM_ClkOut == ENABLE)	INT_CLKO |=  0x01;	//è¾“å‡ºæ—¶é’Ÿ
-		else							INT_CLKO &= ~0x01;	//ä¸è¾“å‡ºæ—¶é’Ÿ
+		if(TIMx->TIM_ClkSource == TIM_CLOCK_Ext)	TMOD |=  0x04;	//¶ÔÍâ¼ÆÊı»ò·ÖÆµ
+		else										TMOD &= ~0x04;	//¶¨Ê±
+		if(TIMx->TIM_ClkOut == ENABLE)	INT_CLKO |=  0x01;	//Êä³öÊ±ÖÓ
+		else							INT_CLKO &= ~0x01;	//²»Êä³öÊ±ÖÓ
 		
 		TH0 = (u8)(TIMx->TIM_Value >> 8);
 		TL0 = (u8)TIMx->TIM_Value;
-		if(TIMx->TIM_Run == ENABLE)	TR0 = 1;	//å¼€å§‹è¿è¡Œ
-		return	0;		//æˆåŠŸ
+		if(TIMx->TIM_Run == ENABLE)	TR0 = 1;	//¿ªÊ¼ÔËĞĞ
+		return	0;		//³É¹¦
 	}
 
 	if(TIM == Timer1)
 	{
-		TR1 = 0;		//åœæ­¢è®¡æ•°
-		if(TIMx->TIM_Interrupt == ENABLE)		ET1 = 1;	//å…è®¸ä¸­æ–­
-		else									ET1 = 0;	//ç¦æ­¢ä¸­æ–­
-		if(TIMx->TIM_Polity == PolityHigh)		PT1 = 1;	//é«˜ä¼˜å…ˆçº§ä¸­æ–­
-		else									PT1 = 0;	//ä½ä¼˜å…ˆçº§ä¸­æ–­
-		if(TIMx->TIM_Mode >= TIM_16BitAutoReloadNoMask)	return 2;	//é”™è¯¯
-		TMOD = (TMOD & ~0x30) | TIMx->TIM_Mode;	//å·¥ä½œæ¨¡å¼,0: 16ä½è‡ªåŠ¨é‡è£…, 1: 16ä½å®šæ—¶/è®¡æ•°, 2: 8ä½è‡ªåŠ¨é‡è£…
+		TR1 = 0;		//Í£Ö¹¼ÆÊı
+		if(TIMx->TIM_Interrupt == ENABLE)		ET1 = 1;	//ÔÊĞíÖĞ¶Ï
+		else									ET1 = 0;	//½ûÖ¹ÖĞ¶Ï
+		if(TIMx->TIM_Polity == PolityHigh)		PT1 = 1;	//¸ßÓÅÏÈ¼¶ÖĞ¶Ï
+		else									PT1 = 0;	//µÍÓÅÏÈ¼¶ÖĞ¶Ï
+		if(TIMx->TIM_Mode >= TIM_16BitAutoReloadNoMask)	return 2;	//´íÎó
+		TMOD = (TMOD & ~0x30) | TIMx->TIM_Mode;	//¹¤×÷Ä£Ê½,0: 16Î»×Ô¶¯ÖØ×°, 1: 16Î»¶¨Ê±/¼ÆÊı, 2: 8Î»×Ô¶¯ÖØ×°
 		if(TIMx->TIM_ClkSource == TIM_CLOCK_12T)	AUXR &= ~0x40;	//12T
 		if(TIMx->TIM_ClkSource == TIM_CLOCK_1T)		AUXR |=  0x40;	//1T
-		if(TIMx->TIM_ClkSource == TIM_CLOCK_Ext)	TMOD |=  0x40;	//å¯¹å¤–è®¡æ•°æˆ–åˆ†é¢‘
-		else										TMOD &= ~0x40;	//å®šæ—¶
-		if(TIMx->TIM_ClkOut == ENABLE)	INT_CLKO |=  0x02;	//è¾“å‡ºæ—¶é’Ÿ
-		else							INT_CLKO &= ~0x02;	//ä¸è¾“å‡ºæ—¶é’Ÿ
+		if(TIMx->TIM_ClkSource == TIM_CLOCK_Ext)	TMOD |=  0x40;	//¶ÔÍâ¼ÆÊı»ò·ÖÆµ
+		else										TMOD &= ~0x40;	//¶¨Ê±
+		if(TIMx->TIM_ClkOut == ENABLE)	INT_CLKO |=  0x02;	//Êä³öÊ±ÖÓ
+		else							INT_CLKO &= ~0x02;	//²»Êä³öÊ±ÖÓ
 		
 		TH1 = (u8)(TIMx->TIM_Value >> 8);
 		TL1 = (u8)TIMx->TIM_Value;
-		if(TIMx->TIM_Run == ENABLE)	TR1 = 1;	//å¼€å§‹è¿è¡Œ
-		return	0;		//æˆåŠŸ
+		if(TIMx->TIM_Run == ENABLE)	TR1 = 1;	//¿ªÊ¼ÔËĞĞ
+		return	0;		//³É¹¦
 	}
 
-	if(TIM == Timer2)		//Timer2,å›ºå®šä¸º16ä½è‡ªåŠ¨é‡è£…, ä¸­æ–­æ— ä¼˜å…ˆçº§
+	if(TIM == Timer2)		//Timer2,¹Ì¶¨Îª16Î»×Ô¶¯ÖØ×°, ÖĞ¶ÏÎŞÓÅÏÈ¼¶
 	{
-		AUXR &= ~(1<<4);	//åœæ­¢è®¡æ•°
-		if(TIMx->TIM_Interrupt == ENABLE)			IE2  |=  (1<<2);	//å…è®¸ä¸­æ–­
-		else										IE2  &= ~(1<<2);	//ç¦æ­¢ä¸­æ–­
+		AUXR &= ~(1<<4);	//Í£Ö¹¼ÆÊı
+		if(TIMx->TIM_Interrupt == ENABLE)			IE2  |=  (1<<2);	//ÔÊĞíÖĞ¶Ï
+		else										IE2  &= ~(1<<2);	//½ûÖ¹ÖĞ¶Ï
 		if(TIMx->TIM_ClkSource >  TIM_CLOCK_Ext)	return 2;
 		if(TIMx->TIM_ClkSource == TIM_CLOCK_12T)	AUXR &= ~(1<<2);	//12T
 		if(TIMx->TIM_ClkSource == TIM_CLOCK_1T)		AUXR |=  (1<<2);	//1T
-		if(TIMx->TIM_ClkSource == TIM_CLOCK_Ext)	AUXR |=  (1<<3);	//å¯¹å¤–è®¡æ•°æˆ–åˆ†é¢‘
-		else										AUXR &= ~(1<<3);	//å®šæ—¶
-		if(TIMx->TIM_ClkOut == ENABLE)	INT_CLKO |=  0x04;	//è¾“å‡ºæ—¶é’Ÿ
-		else							INT_CLKO &= ~0x04;	//ä¸è¾“å‡ºæ—¶é’Ÿ
+		if(TIMx->TIM_ClkSource == TIM_CLOCK_Ext)	AUXR |=  (1<<3);	//¶ÔÍâ¼ÆÊı»ò·ÖÆµ
+		else										AUXR &= ~(1<<3);	//¶¨Ê±
+		if(TIMx->TIM_ClkOut == ENABLE)	INT_CLKO |=  0x04;	//Êä³öÊ±ÖÓ
+		else							INT_CLKO &= ~0x04;	//²»Êä³öÊ±ÖÓ
 
 		TH2 = (u8)(TIMx->TIM_Value >> 8);
 		TL2 = (u8)TIMx->TIM_Value;
-		if(TIMx->TIM_Run == ENABLE)	AUXR |=  (1<<4);	//å¼€å§‹è¿è¡Œ
-		return	0;		//æˆåŠŸ
+		if(TIMx->TIM_Run == ENABLE)	AUXR |=  (1<<4);	//¿ªÊ¼ÔËĞĞ
+		return	0;		//³É¹¦
 	}
-	return 2;	//é”™è¯¯
+	return 2;	//´íÎó
 }

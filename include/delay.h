@@ -8,6 +8,7 @@
 void delay_ms(unsigned char ms);
 
 void DelayInit(void);
-void DelaySync(u16 ms);
+
+void Delayms(u16 ms);
 
 #endif

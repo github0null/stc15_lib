@@ -1,7 +1,7 @@
 
-/*************	åŠŸèƒ½è¯´æ˜Ž	**************
+/*************	¹¦ÄÜËµÃ÷	**************
 
-æœ¬æ–‡ä»¶ä¸ºSTC15xxxç³»åˆ—çš„å¤–ä¸­æ–­åˆå§‹åŒ–å’Œä¸­æ–­ç¨‹åº,ç”¨æˆ·å¯ä»¥åœ¨è¿™ä¸ªæ–‡ä»¶ä¸­ä¿®æ”¹è‡ªå·±éœ€è¦çš„ä¸­æ–­ç¨‹åº.
+±¾ÎÄ¼þÎªSTC15xxxÏµÁÐµÄÍâÖÐ¶Ï³õÊ¼»¯ºÍÖÐ¶Ï³ÌÐò,ÓÃ»§¿ÉÒÔÔÚÕâ¸öÎÄ¼þÖÐÐÞ¸Ä×Ô¼ºÐèÒªµÄÖÐ¶Ï³ÌÐò.
 
 ******************************************/
 
@@ -11,57 +11,57 @@
 
 
 //========================================================================
-// å‡½æ•°: u8	Ext_Inilize(u8 EXT, EXTI_InitTypeDef *INTx)
-// æè¿°: å¤–éƒ¨ä¸­æ–­åˆå§‹åŒ–ç¨‹åº.
-// å‚æ•°: INTx: ç»“æž„å‚æ•°,è¯·å‚è€ƒExti.hé‡Œçš„å®šä¹‰.
-// è¿”å›ž: æˆåŠŸè¿”å›ž0, ç©ºæ“ä½œè¿”å›ž1,é”™è¯¯è¿”å›ž2.
-// ç‰ˆæœ¬: V1.0, 2012-10-22
+// º¯Êý: u8	Ext_Inilize(u8 EXT, EXTI_InitTypeDef *INTx)
+// ÃèÊö: Íâ²¿ÖÐ¶Ï³õÊ¼»¯³ÌÐò.
+// ²ÎÊý: INTx: ½á¹¹²ÎÊý,Çë²Î¿¼Exti.hÀïµÄ¶¨Òå.
+// ·µ»Ø: ³É¹¦·µ»Ø0, ¿Õ²Ù×÷·µ»Ø1,´íÎó·µ»Ø2.
+// °æ±¾: V1.0, 2012-10-22
 //========================================================================
 u8	Ext_Inilize(u8 EXT, EXTI_InitTypeDef *INTx)
 {
-	if(EXT >  EXT_INT4)	return 1;	//ç©ºæ“ä½œ
+	if(EXT >  EXT_INT4)	return 1;	//¿Õ²Ù×÷
 	
-	if(EXT == EXT_INT0)	//å¤–ä¸­æ–­0
+	if(EXT == EXT_INT0)	//ÍâÖÐ¶Ï0
 	{
-		if(INTx->EXTI_Interrupt == ENABLE)		EX0 = 1;	//å…è®¸ä¸­æ–­
-		else									EX0 = 0;	//ç¦æ­¢ä¸­æ–­
-		if(INTx->EXTI_Polity == PolityHigh)		PX0 = 1;	//é«˜ä¼˜å…ˆçº§ä¸­æ–­
-		else									PX0 = 0;	//ä½Žä¼˜å…ˆçº§ä¸­æ–­
-		if(INTx->EXTI_Mode == EXT_MODE_Fall)	IT0 = 1;	//ä¸‹é™æ²¿ä¸­æ–­
-		else									IT0 = 0;	//ä¸Šå‡,ä¸‹é™æ²¿ä¸­æ–­
-		return	0;		//æˆåŠŸ
+		if(INTx->EXTI_Interrupt == ENABLE)		EX0 = 1;	//ÔÊÐíÖÐ¶Ï
+		else									EX0 = 0;	//½ûÖ¹ÖÐ¶Ï
+		if(INTx->EXTI_Polity == PolityHigh)		PX0 = 1;	//¸ßÓÅÏÈ¼¶ÖÐ¶Ï
+		else									PX0 = 0;	//µÍÓÅÏÈ¼¶ÖÐ¶Ï
+		if(INTx->EXTI_Mode == EXT_MODE_Fall)	IT0 = 1;	//ÏÂ½µÑØÖÐ¶Ï
+		else									IT0 = 0;	//ÉÏÉý,ÏÂ½µÑØÖÐ¶Ï
+		return	0;		//³É¹¦
 	}
 
-	if(EXT == EXT_INT1)	//å¤–ä¸­æ–­1
+	if(EXT == EXT_INT1)	//ÍâÖÐ¶Ï1
 	{
-		if(INTx->EXTI_Interrupt == ENABLE)		EX1 = 1;	//å…è®¸ä¸­æ–­
-		else									EX1 = 0;	//ç¦æ­¢ä¸­æ–­
-		if(INTx->EXTI_Polity == PolityHigh)		PX1 = 1;	//é«˜ä¼˜å…ˆçº§ä¸­æ–­
-		else									PX1 = 0;	//ä½Žä¼˜å…ˆçº§ä¸­æ–­
-		if(INTx->EXTI_Mode == EXT_MODE_Fall)	IT1 = 1;	//ä¸‹é™æ²¿ä¸­æ–­
-		else									IT1 = 0;	//ä¸Šå‡,ä¸‹é™æ²¿ä¸­æ–­
-		return	0;		//æˆåŠŸ
+		if(INTx->EXTI_Interrupt == ENABLE)		EX1 = 1;	//ÔÊÐíÖÐ¶Ï
+		else									EX1 = 0;	//½ûÖ¹ÖÐ¶Ï
+		if(INTx->EXTI_Polity == PolityHigh)		PX1 = 1;	//¸ßÓÅÏÈ¼¶ÖÐ¶Ï
+		else									PX1 = 0;	//µÍÓÅÏÈ¼¶ÖÐ¶Ï
+		if(INTx->EXTI_Mode == EXT_MODE_Fall)	IT1 = 1;	//ÏÂ½µÑØÖÐ¶Ï
+		else									IT1 = 0;	//ÉÏÉý,ÏÂ½µÑØÖÐ¶Ï
+		return	0;		//³É¹¦
 	}
 
-	if(EXT == EXT_INT2)		//å¤–ä¸­æ–­2, å›ºå®šä¸ºä¸‹é™æ²¿ä½Žä¼˜å…ˆçº§ä¸­æ–­
+	if(EXT == EXT_INT2)		//ÍâÖÐ¶Ï2, ¹Ì¶¨ÎªÏÂ½µÑØµÍÓÅÏÈ¼¶ÖÐ¶Ï
 	{
-		if(INTx->EXTI_Interrupt == ENABLE)	INT_CLKO |=  (1 << 4);	//å…è®¸ä¸­æ–­	
-		else								INT_CLKO &= ~(1 << 4);	//ç¦æ­¢ä¸­æ–­
-		return	0;		//æˆåŠŸ
+		if(INTx->EXTI_Interrupt == ENABLE)	INT_CLKO |=  (1 << 4);	//ÔÊÐíÖÐ¶Ï	
+		else								INT_CLKO &= ~(1 << 4);	//½ûÖ¹ÖÐ¶Ï
+		return	0;		//³É¹¦
 	}
 
-	if(EXT == EXT_INT3)		//å¤–ä¸­æ–­3, å›ºå®šä¸ºä¸‹é™æ²¿ä½Žä¼˜å…ˆçº§ä¸­æ–­
+	if(EXT == EXT_INT3)		//ÍâÖÐ¶Ï3, ¹Ì¶¨ÎªÏÂ½µÑØµÍÓÅÏÈ¼¶ÖÐ¶Ï
 	{
-		if(INTx->EXTI_Interrupt == ENABLE)	INT_CLKO |=  (1 << 5);	//å…è®¸ä¸­æ–­	
-		else								INT_CLKO &= ~(1 << 5);	//ç¦æ­¢ä¸­æ–­
-		return	0;		//æˆåŠŸ
+		if(INTx->EXTI_Interrupt == ENABLE)	INT_CLKO |=  (1 << 5);	//ÔÊÐíÖÐ¶Ï	
+		else								INT_CLKO &= ~(1 << 5);	//½ûÖ¹ÖÐ¶Ï
+		return	0;		//³É¹¦
 	}
 
-	if(EXT == EXT_INT4)		//å¤–ä¸­æ–­4, å›ºå®šä¸ºä¸‹é™æ²¿ä½Žä¼˜å…ˆçº§ä¸­æ–­
+	if(EXT == EXT_INT4)		//ÍâÖÐ¶Ï4, ¹Ì¶¨ÎªÏÂ½µÑØµÍÓÅÏÈ¼¶ÖÐ¶Ï
 	{
-		if(INTx->EXTI_Interrupt == ENABLE)	INT_CLKO |=  (1 << 6);	//å…è®¸ä¸­æ–­	
-		else								INT_CLKO &= ~(1 << 6);	//ç¦æ­¢ä¸­æ–­
-		return	0;		//æˆåŠŸ
+		if(INTx->EXTI_Interrupt == ENABLE)	INT_CLKO |=  (1 << 6);	//ÔÊÐíÖÐ¶Ï	
+		else								INT_CLKO &= ~(1 << 6);	//½ûÖ¹ÖÐ¶Ï
+		return	0;		//³É¹¦
 	}
-	return 2;	//å¤±è´¥
+	return 2;	//Ê§°Ü
 }
