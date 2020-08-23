@@ -51,6 +51,8 @@ void PrintString2(u8 *puts)
 }
 #endif
 
+#if defined(USE_USART1) || defined(USE_USART2)
+
 u8 USART_Configuration(u8 UARTx, COMx_InitDefine *COMx)
 {
 	u8 i;
@@ -201,6 +203,8 @@ u8 USART_Configuration(u8 UARTx, COMx_InitDefine *COMx)
 
 	return 2;
 }
+
+#endif
 
 /*************** ×°ÔØ´®¿Ú·¢ËÍ»º³å *******************************/
 
