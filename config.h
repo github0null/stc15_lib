@@ -15,15 +15,14 @@ typedef signed long int32_t;
 #ifndef __VSCODE_C51__
 #define at(x) _at_ x
 #define interrupt(x) interrupt x
-#define interrupt_using(x,y) interrupt x using y
+#define interrupt_using(x, y) interrupt x using y
 #endif
 
-//#define MAIN_Fosc		22118400L	//定义主时钟
-//#define MAIN_Fosc		12000000L	//定义主时钟
-//#define MAIN_Fosc		11059200L	//定义主时钟
-//#define MAIN_Fosc		 5529600L	//定义主时钟
-#define MAIN_Fosc		16000000L	//定义主时钟
-#define MainFosc_KHZ	(MAIN_Fosc / 1000)
+#ifndef MAIN_Fosc
+#define MAIN_Fosc 16000000L // ��ʱ��
+#endif
+
+#define MainFosc_KHZ (MAIN_Fosc / 1000)
 
 #include "STC15Fxxxx.H"
 
