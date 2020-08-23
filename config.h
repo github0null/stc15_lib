@@ -19,7 +19,11 @@ typedef signed long int32_t;
 #endif
 
 #ifndef MAIN_Fosc
-#define MAIN_Fosc 16000000L // 主时钟
+#define MAIN_Fosc 16000000L // 主时钟 16MHz
+#endif
+
+#ifndef MCU_Type
+#define MCU_Type STC15F_L2K60S2 // 1KB
 #endif
 
 #define MainFosc_KHZ (MAIN_Fosc / 1000)
